@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  api:
+    container_name: api-fastapi-template
+    build:
+      context: .
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      #- .:/workspaces/${COMPOSE_PROJECT_NAME}  # Mapeamento único e correto
+     #- .:/workspace
+     - .:/workspace:cached
+
+    ports:
+      - "8000:8000"
+    restart: always
+    environment:
+      - PYTHONPATH=/workspaces/${COMPOSE_PROJECT_NAME}
+    #working_dir: /workspaces/${COMPOSE_PROJECT_NAME}
+    working_dir: /workspace
+
+    networks:
+      - app_network
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    env_file:
+      - .env
+
+networks:
+  app_network:
+    external: true
