@@ -1,10 +1,11 @@
 {
   "name": "api-fastapi-template",
-  "dockerComposeFile": ["../docker-compose.yml"],
+  "dockerComposeFile": [
+    "../docker-compose.yml"
+  ],
   "service": "api",
   "workspaceFolder": "/workspace",
   // Remova o workspaceMount completamente!
-
   "customizations": {
     "vscode": {
       "settings": {
@@ -18,32 +19,25 @@
       "extensions": [
         "ms-python.python",
         "ms-python.vscode-pylance"
-              
-        
-        
       ]
     }
   },
-
-  "postCreateCommand": "pip install --upgrade pip && pip install -r requirements.txt",
-
-  "forwardPorts": [8000],
-
+  "postCreateCommand": "", // "pip install --upgrade pip && pip install -r requirements.txt",
+  "forwardPorts": [
+    8000
+  ],
   "features": {
     "ghcr.io/devcontainers/features/git:1": {},
     "ghcr.io/devcontainers/features/python:1": {
       "version": "3.12"
     }
   },
-
   "mounts": [
     "source=devcontainer-pip-cache,target=/root/.cache,type=volume"
   ],
-
   "containerEnv": {
     "PYTHONUNBUFFERED": "1",
     "ENV": "development"
   },
-
   "remoteUser": "root"
 }

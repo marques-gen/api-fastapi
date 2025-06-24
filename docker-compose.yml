@@ -3,6 +3,7 @@ version: "3.8"
 services:
   api:
     container_name: api-fastapi-template
+    
     build:
       context: .
       dockerfile: .devcontainer/Dockerfile
@@ -10,6 +11,7 @@ services:
       #- .:/workspaces/${COMPOSE_PROJECT_NAME}  # Mapeamento único e correto
      #- .:/workspace
      - .:/workspace:cached
+     
 
     ports:
       - "8000:8000"
